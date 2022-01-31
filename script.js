@@ -34,8 +34,9 @@ function searchFunction() {
 
     if (cityInput.value == "") {
         alert("No input found")
+
     } else {
-        console.log(cityInput.value);
+
         getCurrentWeather(cityInput.value);
         getForecast(cityInput.value);
     }
@@ -50,8 +51,9 @@ function getCurrentWeather() {
     console.log(currentURL);
 
     fetch(currentURL).then(
+
         function (response) {
-            console.log(response);
+
             if (response.status >= 200 && response.status < 300) {
                 const promise = response.json();
                 console.log(promise);
@@ -61,9 +63,13 @@ function getCurrentWeather() {
                 throw 'Could not connect to API';
             }
         }
+
     ).then(
+
         function (data) {
-            console.log(data);
+
+            //console.log(data);
+
             const { temp, wind_spd, rh } = data.data[0];
             const { description, icon } = data.data[0].weather
 
@@ -75,7 +81,9 @@ function getCurrentWeather() {
 
         }
     ).catch(
+
         function (error) {
+
             console.log(error);
             alert("No search result found");
         }
@@ -89,18 +97,20 @@ function getForecast() {
     const forcastURL = `https://api.weatherbit.io/v2.0/forecast/daily?key=${KEY}&lang=sv&days=5&city=${cityInput.value}`
 
     fetch(forcastURL).then(
+
         function (response) {
-            console.log(response);
+
             if (response.status >= 200 && response.status < 300) {
                 const promise = response.json();
-                console.log(promise);
                 return promise;
             }
             else {
+
                 throw 'Could not connect to API';
             }
         }
     ).then(
+
         function (data) {
 
             //console.log(data);
@@ -144,17 +154,11 @@ function getForecast() {
         }
 
     ).catch(
+
         function (error) {
+
             console.log(error);
             alert("No search result found");
         }
     );
-};
-
-function clearData() {
-    const div = document.querySelectorAll("div");
-    //console.log(img.length);
-    for (const iterator of div) {   
-        iterator.remove();
-    }
 };
