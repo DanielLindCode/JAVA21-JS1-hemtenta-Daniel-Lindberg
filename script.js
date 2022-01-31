@@ -1,11 +1,14 @@
 const cityInput = document.querySelector("input");
 const btn = document.querySelector("button");
+
+// CurrentDay
 const currentDescription = document.getElementById("current-description");
 const currentTemp = document.getElementById("current-temp");
 const currentWind = document.getElementById('current-wind');
 const currentHumidity = document.getElementById('current-humidity');
 const currentWeatherIcon = document.getElementById('weatherIcon');
 
+//Forcast
 const forcastTemp1 = document.getElementById('forcastTemp1');
 const forcastTemp2 = document.getElementById('forcastTemp2');
 const forcastTemp3 = document.getElementById('forcastTemp3');
@@ -24,10 +27,12 @@ const forcastIcon3 = document.getElementById('forcastIcon3');
 const forcastIcon4 = document.getElementById('forcastIcon4');
 const forcastIcon5 = document.getElementById('forcastIcon5');
 
+const KEY = '1acef4a6ab8e45a5a002b098646964a1';
 
 btn.addEventListener('click', (e) => {
     e.preventDefault();
     searchFunction();
+
 });
 
 function searchFunction() {
@@ -43,8 +48,6 @@ function searchFunction() {
 };
 
 function getCurrentWeather() {
-
-    const KEY = '1acef4a6ab8e45a5a002b098646964a1';
 
     const currentURL = `https://api.weatherbit.io/v2.0/current?&key=${KEY}&lang=sv&city=${cityInput.value}`
 
@@ -80,6 +83,7 @@ function getCurrentWeather() {
             currentWeatherIcon.src = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
 
         }
+
     ).catch(
 
         function (error) {
@@ -91,8 +95,6 @@ function getCurrentWeather() {
 };
 
 function getForecast() {
-
-    const KEY = '1acef4a6ab8e45a5a002b098646964a1';
 
     const forcastURL = `https://api.weatherbit.io/v2.0/forecast/daily?key=${KEY}&lang=sv&days=5&city=${cityInput.value}`
 
@@ -109,17 +111,18 @@ function getForecast() {
                 throw 'Could not connect to API';
             }
         }
+
     ).then(
 
         function (data) {
 
             //console.log(data);
 
-            const temp1  = data.data[0].temp;
-            const temp2  = data.data[1].temp;
-            const temp3  = data.data[2].temp;
-            const temp4  = data.data[3].temp;
-            const temp5  = data.data[4].temp;
+            const temp1 = data.data[0].temp;
+            const temp2 = data.data[1].temp;
+            const temp3 = data.data[2].temp;
+            const temp4 = data.data[3].temp;
+            const temp5 = data.data[4].temp;
 
             const desc1 = data.data[0].weather.description;
             const desc2 = data.data[1].weather.description;
@@ -150,7 +153,7 @@ function getForecast() {
             forcastIcon3.src = `https://www.weatherbit.io/static/img/icons/${icon3}.png`;
             forcastIcon4.src = `https://www.weatherbit.io/static/img/icons/${icon4}.png`;
             forcastIcon5.src = `https://www.weatherbit.io/static/img/icons/${icon5}.png`;
-            
+
         }
 
     ).catch(
