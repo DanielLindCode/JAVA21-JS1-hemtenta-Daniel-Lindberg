@@ -45,7 +45,7 @@ function getCurrentWeather() {
 
     const KEY = '1acef4a6ab8e45a5a002b098646964a1';
 
-    const currentURL = `http://api.weatherbit.io/v2.0/current?&key=${KEY}&lang=sv&city=${cityInput.value}`
+    const currentURL = `https://api.weatherbit.io/v2.0/current?&key=${KEY}&lang=sv&city=${cityInput.value}`
 
     console.log(currentURL);
 
@@ -86,7 +86,7 @@ function getForecast() {
 
     const KEY = '1acef4a6ab8e45a5a002b098646964a1';
 
-    const forcastURL = `http://api.weatherbit.io/v2.0/forecast/daily?key=${KEY}&lang=sv&days=5&city=${cityInput.value}`
+    const forcastURL = `https://api.weatherbit.io/v2.0/forecast/daily?key=${KEY}&lang=sv&days=5&city=${cityInput.value}`
 
     fetch(forcastURL).then(
         function (response) {
